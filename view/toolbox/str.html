@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>toolList</title>
+    <script>window.$ = window.jQuery = require('../../common/jquery-3.5.1.min.js');</script>
+    <script type="module" src="./js/str.js"></script>
+    <style type="text/css">
+        html {
+            user-select: none;
+        }
+
+        /*应用区域*/
+        #main {
+            position: absolute;
+            top: 2%;
+            right: 0;
+            margin: auto;
+            bottom: 0;
+            left: 2%;
+
+            width: 92%;
+            height: 92%;
+            border-radius: 10px;
+            background-color: #FFB5C5A0;
+            box-shadow: 0px 0px 20px #FFB5C5A0;
+            overflow: hidden;
+        }
+
+        ul {
+            list-style: none;
+            position: relative;
+            top: 0;
+            right: 0;
+            margin: auto;
+            left: 0;
+            bottom: 0;
+
+            width: 100%;
+            height: 100%;
+
+        }
+
+        li {
+            display: inline-block;
+            background-color: #89CDE424;
+        }
+
+        /*让radio组件显示透明*/
+        li input[type="radio"] {
+            opacity: 0;
+            position: absolute;
+            outline: none;
+        }
+
+        li label {
+            display: block;
+            width: 120px;
+            height: 100%;
+            border: 1px solid #00BEBE90;
+            border-bottom: 0;
+            border-radius: 3px 3px 0 0;
+            color: #B0E2FF90;
+            line-height: 50px;
+            text-align: center;
+            cursor: pointer;
+        }
+
+        li label:hover {
+            border-color: #00bebe;
+            color: #00bebe;
+        }
+
+
+        /*设置选中后的label属性*/
+        li input[type="radio"]:checked ~ label {
+            background: #C6E2FF22;
+            color: #4876FF90;
+            height: 8%;
+            cursor: default;
+            box-shadow: 0px 0px 50px #C6E2FF90;
+        }
+
+        /*设置选中后的section属性*/
+        li input[type="radio"]:checked ~ .section {
+            display: block;
+        }
+
+        li .section {
+            display: none;
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 9%;
+            left: 0;
+            background: #E0FFFF25;
+            border-top: 2px solid #00BEBE90;
+            transition: all 200ms ease-in-out;
+        }
+
+        .section .sectionHead {
+            width: 100%;
+            height: 10%;
+        }
+
+        .section .sectionContent {
+            width: 100%;
+            height: 90%;
+        }
+
+
+        li textarea {
+            resize: none;
+
+            width: 43%;
+            height: 80%;
+            margin: 2%;
+        }
+    </style>
+</head>
+
+<body>
+<div id="main">
+    <ul>
+        <li>
+            <input type="radio" name="tab" id="tab1" checked/>
+            <label for="tab1">普通字符</label>
+            <div class="section">
+                <div class="sectionHead"></div>
+                <div class="sectionContent">
+                    <textarea class="stringIn">aaa</textarea>
+                    <textarea class="stringOut"></textarea>
+                </div>
+            </div>
+        </li>
+        <li>
+            <input type="radio" name="tab" id="tab2"/>
+            <label for="tab2">json</label>
+            <div class="section">
+                <div class="sectionHead"></div>
+                <div class="sectionContent">
+                    <textarea class="stringIn">bbbbb</textarea>
+                    <textarea class="stringOut"></textarea>
+                </div>
+            </div>
+        </li>
+    </ul>
+</div>
+</body>
+</html>

@@ -11,28 +11,26 @@ $(document).ready(function () {
     });
 
     var tab1 = $("#tab1~div .sectionHead");
-    $(tab1.children()[0]).on('click', function () {
+    $(tab1.children()).on('click', function () {
+        let index = $(this).index();
         let value = $(tab1.next().children()[0]).val();
-        $(tab1.next().children()[1]).val(value.replace(/[\r\n]/g, ""));
+        let result = $(tab1.next().children()[1]);
+
+        if (index == 0) {
+            result.val(value.replace(/[\r\n]/g, ""));
+        } else if (index == 1) {
+            result.val(value.replace(/\ +/g, ""));
+        } else if (index == 2) {
+            result.val(value.replace(/\s+/g, ""));
+        } else if (index == 3) {
+            result.val(value.toUpperCase());
+        } else if (index == 4) {
+            result.val(value.toLowerCase());
+        } else if (index == 5) {
+            result.val(value.replace(/\s+([A-Za-z])/g, function (keb, item) {
+                return item.toUpperCase();
+            }));
+        }
     });
 
-    $(tab1.children()[1]).on('click', function () {
-        let value = $(tab1.next().children()[0]).val();
-        $(tab1.next().children()[1]).val(value.replace(/\ +/g, ""));
-    });
-
-    $(tab1.children()[2]).on('click', function () {
-        let value = $(tab1.next().children()[0]).val();
-        $(tab1.next().children()[1]).val(value.replace(/\s+/g, ""));
-    });
-
-    $(tab1.children()[3]).on('click', function () {
-        let value = $(tab1.next().children()[0]).val();
-        $(tab1.next().children()[1]).val(value.toUpperCase());
-    });
-
-    $(tab1.children()[4]).on('click', function () {
-        let value = $(tab1.next().children()[0]).val();
-        $(tab1.next().children()[1]).val(value.toLowerCase());
-    });
 });

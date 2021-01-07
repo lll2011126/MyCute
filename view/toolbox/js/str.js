@@ -33,4 +33,16 @@ $(document).ready(function () {
         }
     });
 
+    var tab2 = $("#tab2~div .sectionHead");
+    $(tab2.children()).on('click', function () {
+        let index = $(this).index();
+        let value = $(tab2.next().children()[0]).val();
+        let result = $(tab2.next().children()[1]);
+
+        if (index == 0) {
+            result.val(JSON.stringify(JSON.parse(value)));
+        } else if (index == 1) {
+            result.val(JSON.stringify(JSON.parse(value), null, 2));
+        }
+    });
 });

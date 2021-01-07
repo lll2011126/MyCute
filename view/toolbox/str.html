@@ -127,10 +127,26 @@
             box-shadow: 0px 0px 10px #3755ad30;
         }
 
+        li textarea::-webkit-scrollbar {
+            width: 3px;
+        }
+
+        li textarea::-webkit-scrollbar-button {
+            display: none
+        }
+
+        li textarea::-webkit-scrollbar-track {
+            background-color: #9175bd90;
+        }
+
+        li textarea::-webkit-scrollbar-thumb {
+            background-color: #88000090;
+        }
+
         .sectionHead label {
             float: left;
             display: inline-block;
-            height: 20%;
+            height: 40%;
             margin: 12px 0px 0px 10px;
             border-radius: 5px;
             color: #3755ad;
@@ -140,7 +156,7 @@
 
         .sectionHead label:hover {
             background-color: #9175bd50;
-            box-shadow: 0px 0px 20px #9175bd50;
+            box-shadow: 0px 0px 30px #9175bd50;
             cursor: pointer;
         }
     </style>
@@ -162,7 +178,7 @@
                     <label>驼峰</label>
                 </div>
                 <div class="sectionContent">
-                    <textarea class="stringIn" spellcheck="false">aaa</textarea>
+                    <textarea class="stringIn" spellcheck="false" placeholder="粘贴字符到此处"></textarea>
                     <textarea class="stringOut" spellcheck="false"></textarea>
                 </div>
             </div>
@@ -171,9 +187,12 @@
             <input type="radio" name="tab" id="tab2"/>
             <label for="tab2">json</label>
             <div class="section">
-                <div class="sectionHead"></div>
+                <div class="sectionHead">
+                    <label>去掉空格</label>
+                    <label>展开</label>
+                </div>
                 <div class="sectionContent">
-                    <textarea class="stringIn" spellcheck="false">bbbbb</textarea>
+                    <textarea class="stringIn" spellcheck="false" placeholder="粘贴字符到此处"></textarea>
                     <textarea class="stringOut" spellcheck="false"></textarea>
                 </div>
             </div>

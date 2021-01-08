@@ -2,7 +2,6 @@ import windowControl from "../../../common/custom/windowControl.js";
 import createNewWin from "../../../common/custom/createNewWin.js";
 
 const {remote} = require('electron');
-const path = require('path');
 
 $(document).ready(function () {
     const thisWindow = remote.getCurrentWindow();
@@ -103,12 +102,18 @@ var rightOptions = [
         height: 600
     },
     {
-        name: "bbb",
-        icon: "../../static/image/box/time.png"
+        name: "时间戳",
+        icon: "../../static/image/box/time.png",
+        href: "../time/time.html",
+        width: 400,
+        height: 200
     },
     {
-        name: "bbb",
-        icon: "../../static/image/box/time.png"
+        name: "cron",
+        icon: "../../static/image/box/cron.png",
+        href: "../cron/toCron.html",
+        width: 1000,
+        height: 600
     },
     {
         name: "bbb",

@@ -34,9 +34,9 @@ const windowControl = {
                     waitTimeOut = null;
                 }
                 let offX = area.offset().left;//元素的绝对位置
-                let offY = area.offset().top;//元素的绝对位置
+                let offY = Math.floor(area.offset().top);//元素的绝对位置
                 let areaWidth = area.width();
-                let areaHeight = area.height();
+                let areaHeight = Math.floor(area.height());
 
                 if (windowMoveOut == null) {
                     if (window.getPosition()[0] + offX + areaWidth <= 1) {
@@ -69,7 +69,7 @@ const windowControl = {
                         windowMoveOut = setInterval(() => {
                             let newY = window.getPosition()[1] + speed;
                             if (newY + offY > 0) {
-                                newY = 0 - offX;
+                                newY = 0 - offY;
                             }
                             let newX = window.getPosition()[0];
                             window.setPosition(newX, newY);
@@ -89,9 +89,9 @@ const windowControl = {
             if (against) {
                 //如果处于停靠位置，x=0，y=一半位置
                 let offX = area.offset().left;//元素的绝对位置
-                let offY = area.offset().top;//元素的绝对位置
+                let offY = Math.floor(area.offset().top);//元素的绝对位置
                 let areaWidth = area.width();
-                let areaHeight = area.height();
+                let areaHeight = Math.floor(area.height());
                 if (window.getPosition()[0] + offX == 0) {//左边
                     waitTimeOut = setTimeout(function () {
                         windowMoveIn = setInterval(() => {
@@ -163,7 +163,7 @@ const windowControl = {
             if (against) {
                 if (event.which == 1) {
                     let offX = area.offset().left;//元素的绝对位置
-                    let offY = area.offset().top;//元素的绝对位置
+                    let offY = Math.floor(area.offset().top);//元素的绝对位置
                     let areaWidth = area.width();
                     //左边
                     if (event.screenX <= 1) {

@@ -33,7 +33,7 @@ const windowControl = {
                     clearTimeout(waitTimeOut);
                     waitTimeOut = null;
                 }
-                let offX = area.offset().left;//元素的绝对位置
+                let offX = Math.floor(area.offset().left);//元素的绝对位置
                 let offY = Math.floor(area.offset().top);//元素的绝对位置
                 let areaWidth = area.width();
                 let areaHeight = Math.floor(area.height());
@@ -88,7 +88,7 @@ const windowControl = {
 
             if (against) {
                 //如果处于停靠位置，x=0，y=一半位置
-                let offX = area.offset().left;//元素的绝对位置
+                let offX = Math.floor(area.offset().left);//元素的绝对位置
                 let offY = Math.floor(area.offset().top);//元素的绝对位置
                 let areaWidth = area.width();
                 let areaHeight = Math.floor(area.height());
@@ -162,7 +162,7 @@ const windowControl = {
             //检测是否符合停靠条件
             if (against) {
                 if (event.which == 1) {
-                    let offX = area.offset().left;//元素的绝对位置
+                    let offX =  Math.floor(area.offset().left);//元素的绝对位置
                     let offY = Math.floor(area.offset().top);//元素的绝对位置
                     let areaWidth = area.width();
                     //左边

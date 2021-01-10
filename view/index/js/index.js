@@ -105,7 +105,7 @@ var rightOptions = [
         name: "时间戳",
         icon: "../../static/image/box/time.png",
         href: "../time/time.html",
-        width: 400,
+        width: 650,
         height: 200
     },
     {

@@ -56,7 +56,7 @@ $(document).ready(function () {
                 },
                 style: {
                     filePath: $(this).children("a").attr('href'),
-                    // openDevTools: true
+                    openDevTools: true
                 }
             };
             $(this).data("value", createNewWin(defaultOptions));
@@ -112,6 +112,13 @@ var rightOptions = [
         name: "cron",
         icon: "../../static/image/box/cron.png",
         href: "../cron/toCron.html",
+        width: 1000,
+        height: 600
+    },
+    {
+        name: "录制",
+        icon: "../../static/image/box/record.png",
+        href: "../record/record.html",
         width: 1000,
         height: 600
     },

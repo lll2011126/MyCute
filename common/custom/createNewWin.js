@@ -4,7 +4,8 @@ var defaultOptions = {
     initWindow: {
         webPreferences: {
             nodeIntegration: true,
-            enableRemoteModule: true
+            enableRemoteModule: true,
+            // webSecurity: false
         },
         width: 200,
         height: 200,

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>window.$ = window.jQuery = require('../../common/jquery-3.5.1.min.js');</script>
+    <script type="module" src="js/picture.js"></script>
+    <style type="text/css">
+        html {
+            user-select: none;
+            overflow: hidden;
+        }
+
+        #main {
+            position: absolute;
+            top: 2%;
+            right: 0;
+            margin: auto;
+            bottom: 0;
+            left: 2%;
+
+            width: 88%;
+            height: 88%;
+            border-radius: 10px;
+
+            background-color: #FFB5C5A0;
+            box-shadow: 0px 0px 20px #FFB5C5A0;
+            overflow: hidden;
+        }
+
+        .holder {
+            position: absolute;
+            width: 90%;
+            height: 50%;
+            background: #2fa0ec10;
+            margin: 3% 3% 0;
+            border: 10px solid #9175bd00;
+            border-radius: 10px;
+            transition: .3s all ease-in-out;
+        }
+
+        .holder-ondrag {
+            border: 10px solid #9175bd50;
+        }
+
+        #canvas {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+
+        #hiddenCanvas {
+            display: none;
+            position: absolute;
+            width: 0%;
+            height: 0%;
+        }
+    </style>
+</head>
+<body>
+<div id="main">
+    <div id="holder" class="holder">
+        <canvas id="canvas">
+        </canvas>
+        <canvas id="hiddenCanvas">
+        </canvas>
+    </div>
+    <div>
+        <button id="compress">压缩</button>
+    </div>
+</div>
+</body>
+</html>

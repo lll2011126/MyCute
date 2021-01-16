@@ -19,8 +19,8 @@ class Recorder {
      * @memberof Recorder
      */
     startRecord = () => {
-        desktopCapturer.getSources({ types: ['window', 'screen'] }).then(
-            sources=>{
+        desktopCapturer.getSources({types: ['window', 'screen']}).then(
+            sources => {
                 console.log(sources) // sources就是获取到的窗口和桌面数组
             })
         // desktopCapturer.getSources({
@@ -30,35 +30,38 @@ class Recorder {
         //     if (error) {
         //         throw error;
         //     }
-            /* 要获取桌面音频必须设置audio约束如下 */
-            navigator.mediaDevices.getUserMedia({
-                audio:  {
-                    mandatory: {
-                        chromeMediaSource: 'desktop'
-                    }
-                },
-                video:   {
-                    mandatory: {
-                        chromeMediaSource: 'desktop',
-                        maxWidth: window.screen.width,
-                        maxHeight: window.screen.height
-                        /*cursor:"never" */
-                        /*取消录制鼠标，以免鼠标闪烁，这个目前标准定义了各浏览器还没实现，
-                        如果需要请使用webrtc-adapter，使用最新API，
-                        视频录制被单独分离成getDisplayMedia，
-                        但是cursor约束条件是否有效暂时也不确定。没试过。*/
-                    }
+        /* 要获取桌面音频必须设置audio约束如下 */
+        navigator.mediaDevices.getUserMedia({
+            audio: {
+                mandatory: {
+                    chromeMediaSource: 'desktop'
                 }
-            }).then(Mediastream => {
-                this.getMicroAudioStream().then((audioStream)=>{
-                    Mediastream.addTrack(audioStream.getAudioTracks()[0])//注！此处添加麦克风音轨无效
-                    this.createRecorder(Mediastream);
-                });
-
-            }).catch(err => {
-                this.getUserMediaError(err);
-
+            },
+            video: {
+                mandatory: {
+                    chromeMediaSource: 'desktop',
+                    maxWidth: window.screen.width,
+                    maxHeight: window.screen.height,
+                    maxFrameRate:24,
+                    /*cursor:"never" */
+                    /*取消录制鼠标，以免鼠标闪烁，这个目前标准定义了各浏览器还没实现，
+                    如果需要请使用webrtc-adapter，使用最新API，
+                    视频录制被单独分离成getDisplayMedia，
+                    但是cursor约束条件是否有效暂时也不确定。没试过。*/
+                }
+            }
+        }).then(Mediastream => {
+            this.getMicroAudioStream().then((audioStream) => {
+                Mediastream.addTrack(audioStream.getAudioTracks()[0])//注！此处添加麦克风音轨无效
+                this.createRecorder(Mediastream);
+            });
+            Mediastream.getTracks().forEach(function (track) {
+                console.log(track.getSettings())
             })
+        }).catch(err => {
+            this.getUserMediaError(err);
+
+        })
 
         // })
 
@@ -70,10 +73,9 @@ class Recorder {
      *
      * @memberof Recorder
      */
-    getMicroAudioStream=()=>{
-        return navigator.mediaDevices.getUserMedia({ audio: true, video: false })
+    getMicroAudioStream = () => {
+        return navigator.mediaDevices.getUserMedia({audio: true, video: false})
     }
-
 
 
     /**
@@ -82,14 +84,14 @@ class Recorder {
      * @memberof Recorder
      */
     getUserMediaError = (err) => {
-        console.log('mediaError',err);
+        console.log('mediaError', err);
 
 
     }
 
 
-    getUserAudioError= (err) => {
-        console.log('audioError',err);
+    getUserAudioError = (err) => {
+        console.log('audioError', err);
 
     }
 
@@ -136,7 +138,6 @@ class Recorder {
     }
 
 
-
     /**
      *停止录制视频
      *
@@ -146,8 +147,6 @@ class Recorder {
         console.log('stopRecord');
         this.recorder.stop();
     }
-
-
 
 
 }

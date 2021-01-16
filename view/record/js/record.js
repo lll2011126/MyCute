@@ -7,7 +7,7 @@ $(document).ready(function () {
     const thisWindow = remote.getCurrentWindow();
     windowControl.move(thisWindow, $("#main"), false, true);
 
-    var var1=new Recorder('C:\\Users\\64381\\Desktop\\aaaa.mkv') ;
+    var var1=new Recorder('C:\\Users\\64381\\Desktop\\aaaa.mp4') ;
 
     $("#start").click(function (e) {
         var1.startRecord();

@@ -56,7 +56,7 @@ $(document).ready(function () {
                 },
                 style: {
                     filePath: $(this).children("a").attr('href'),
-                    openDevTools: true
+                    // openDevTools: true
                 }
             };
             $(this).data("value", createNewWin(defaultOptions));
@@ -119,6 +119,13 @@ var rightOptions = [
         name: "录制",
         icon: "../../static/image/box/record.png",
         href: "../record/record.html",
+        width: 1000,
+        height: 600
+    },
+    {
+        name: "压缩",
+        icon: "../../static/image/box/picture.png",
+        href: "../picture/picture.html",
         width: 1000,
         height: 600
     },

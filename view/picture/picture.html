@@ -28,8 +28,9 @@
             overflow: hidden;
         }
 
+        /*********拖入框***********/
         .holder {
-            position: absolute;
+            position: relative;
             width: 90%;
             height: 50%;
             background: #2fa0ec10;
@@ -43,6 +44,7 @@
             border: 10px solid #9175bd50;
         }
 
+        /*********画布***********/
         #canvas {
             position: absolute;
             width: 100%;
@@ -55,6 +57,29 @@
             width: 0%;
             height: 0%;
         }
+
+        /*********信息展示区***********/
+        #info {
+            position: relative;
+            width: 90%;
+            height: 20%;
+            margin: 3% 3% 0;
+            background-color: #9175bd;
+        }
+
+
+        /******************************/
+        button {
+            background-color: #9175bd80;
+            color: #00bebe;
+            box-shadow: 0px 0px 50px #00ee0080;
+            border: 2px solid #2fa0ec00;
+            outline: none;
+        }
+
+        button:hover {
+            border: 2px solid #2fa0ec90;
+        }
     </style>
 </head>
 <body>
@@ -65,7 +90,7 @@
         <canvas id="hiddenCanvas">
         </canvas>
     </div>
-    <div>
+    <div id="info">
         <button id="compress">压缩</button>
     </div>
 </div>

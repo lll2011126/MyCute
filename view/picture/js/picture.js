@@ -77,9 +77,11 @@ $(document).ready(function () {
     });
 });
 
+var ifDialog;
 
 function SaveDialog(data) {
-    dialog.showSaveDialog({
+    if (ifDialog != undefined) return;
+    ifDialog = dialog.showSaveDialog({
         title: "请选择要保存的位置",
         buttonLabel: "保存",
         defaultPath: new Date().getTime() + '.jpg',
@@ -87,16 +89,19 @@ function SaveDialog(data) {
             {name: 'image/jpeg', extensions: ['jpg']},
         ]
     }).then(result => {
-        let base64 = data.replace(/^data:image\/\w+;base64,/, ""); //去掉图片base64码前面部分data:image/png;base64
-        let dataBuffer = new Buffer(base64, 'base64'); //把base64码转成buffer对象，
-        console.log(dataBuffer.length);
-        fs.writeFile(result.filePath, dataBuffer, "binary", function (err) {
-            if (err) {
-                console.log("An error occurred creating the file :" + err.message)
-            } else {
-                console.log("The file has been successfully saved")
-            }
-        })
+        if (!result.canceled) {
+            let base64 = data.replace(/^data:image\/\w+;base64,/, ""); //去掉图片base64码前面部分data:image/png;base64
+            let dataBuffer = new Buffer(base64, 'base64'); //把base64码转成buffer对象，
+            console.log(dataBuffer.length);
+            fs.writeFile(result.filePath, dataBuffer, "binary", function (err) {
+                if (err) {
+                    console.log("An error occurred creating the file :" + err.message)
+                } else {
+                    console.log("The file has been successfully saved")
+                }
+            })
+        }
+        ifDialog = undefined;
     }).catch(err => {
         console.log(err)
     })

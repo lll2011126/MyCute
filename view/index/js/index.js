@@ -56,7 +56,7 @@ $(document).ready(function () {
                 },
                 style: {
                     filePath: $(this).children("a").attr('href'),
-                    // openDevTools: true
+                    openDevTools: true
                 }
             };
             $(this).data("value", createNewWin(defaultOptions));

@@ -6,15 +6,9 @@ const {clipboard} = require('electron')
 $(document).ready(function () {
     const thisWindow = remote.getCurrentWindow();
     windowControl.move(thisWindow, $("#main"), false, true);
-    $("input[type='button']").bind('mousedown', function (event) {
-        event.stopPropagation();
-    });
-    $("input[type='text']").bind('mousedown', function (event) {
-        event.stopPropagation();
-    });
-    $("select").bind('mousedown', function (event) {
-        event.stopPropagation();
-    });
+    windowControl.stopPropagation($("input[type='button']"));
+    windowControl.stopPropagation($("input[type='text']"));
+    windowControl.stopPropagation($("select"));
 
     // 当前时间 两种
     var var1 = setInterval(function () {

@@ -67,19 +67,26 @@
             background-color: #9175bd;
         }
 
-
-        /******************************/
-        button {
-            background-color: #9175bd80;
-            color: #00bebe;
-            box-shadow: 0px 0px 50px #00ee0080;
-            border: 2px solid #2fa0ec00;
+        /*********按钮*************/
+        input[type="button"] {
+            background-color: #9175bd90;
+            box-shadow: 0px 0px 30px #9175bd50;
+            border: 2px solid #00bebe00;
             outline: none;
         }
 
-        button:hover {
-            border: 2px solid #2fa0ec90;
+        input[type="button"]:hover {
+            background-color: #a88cd580;
+            box-shadow: 0px 0px 30px #a88cd580;
         }
+
+        input[type="button"]:active {
+            background-color: #9175bd90;
+            box-shadow: 0px 0px 30px #9175bd50;
+            border: 2px solid #00bebe80;
+            outline: none;
+        }
+
     </style>
 </head>
 <body>
@@ -91,7 +98,8 @@
         </canvas>
     </div>
     <div id="info">
-        <button id="compress">压缩</button>
+        <input type="range" min="0" max="1" step="0.01">
+        <input type="button" id="compress" value="压缩">
     </div>
 </div>
 </body>

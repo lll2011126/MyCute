@@ -5,10 +5,7 @@ const {remote} = require('electron');
 
 $(document).ready(function () {
     windowControl.move(remote.getCurrentWindow(), $("#main"), false, true);
-
-    $("textarea").bind('mousedown', function (event) {
-        event.stopPropagation();
-    });
+    windowControl.stopPropagation( $("textarea"));
 
     var tab1 = $("#tab1~div .sectionHead");
     $(tab1.children()).on('click', function () {

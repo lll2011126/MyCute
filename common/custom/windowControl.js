@@ -162,7 +162,7 @@ const windowControl = {
             //检测是否符合停靠条件
             if (against) {
                 if (event.which == 1) {
-                    let offX =  Math.floor(area.offset().left);//元素的绝对位置
+                    let offX = Math.floor(area.offset().left);//元素的绝对位置
                     let offY = Math.floor(area.offset().top);//元素的绝对位置
                     let areaWidth = area.width();
                     //左边
@@ -206,6 +206,11 @@ const windowControl = {
         // area.on('mouseleave', () => {
         //     window.setIgnoreMouseEvents(true, {forward: true});
         // });
+    },
+    stopPropagation: function (area) {
+        area.bind('mousedown', function (event) {
+            event.stopPropagation();
+        });
     }
 };
 

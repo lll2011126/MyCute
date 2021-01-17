@@ -7,6 +7,7 @@ const {dialog} = require('electron').remote;
 $(document).ready(function () {
     const thisWindow = remote.getCurrentWindow();
     windowControl.move(thisWindow, $("#main"), false, true);
+    windowControl.stopPropagation($("input[type='range']"));
 
     //设置画布大小比列和真实大小一样
     $("#canvas").attr("width", $('#canvas').width()).attr("height", $('#canvas').height());
@@ -70,6 +71,11 @@ $(document).ready(function () {
             hiddenCanvas.getContext('2d').drawImage(this, 0, 0, imageRealWidth, imageRealHeight);//在隐藏画布上绘制
         });
     });
+
+    $("input[type='range']").on('change', function (e) {
+        console.log($(this).val());
+    });
+
 
     $('#compress').click(function (e) {
         let data = hiddenCanvas.toDataURL('image/jpeg', 1);

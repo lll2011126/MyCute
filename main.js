@@ -12,8 +12,8 @@ var defaultOptions = {
         nodeIntegration: true,//require未定义的问题
         enableRemoteModule: true//remote模块
     },
-    x:0,
-    y:0,
+    x: 0,
+    y: 0,
     width: 500,
     height: 400,
     frame: false,
@@ -22,6 +22,7 @@ var defaultOptions = {
 };
 
 app.on('ready', function () {
+    Menu.setApplicationMenu(null);//去掉菜单
     let screenWidth = screen.getPrimaryDisplay().workAreaSize.width;
     let screenHeight = screen.getPrimaryDisplay().workAreaSize.height;
 
@@ -100,4 +101,8 @@ app.windowMove = function windowMove(win) {
 
 app.clearMove = function clearMove() {
     ipcMain.removeAllListeners("window-move-open");
+};
+
+app.console = function (message) {
+    console.log(message.toString());
 };

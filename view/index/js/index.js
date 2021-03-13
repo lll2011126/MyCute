@@ -42,21 +42,24 @@ $(document).ready(function () {
     }
 
     for (let option of rightOptions) {
-        $("#boxRight ul").append("<li><a href='" + option.href + "' onclick='return false' ondragstart='return false' style='font-size: 10px' width=" + option.width + " height=" + option.height + "><img src='" + option.icon + "'/>" + option.name + "</a></li>");
+        $("#boxRight ul").append("<li><a windowOption='" + JSON.stringify(option.windowOption) + "' href='" + option.href + "' onclick='return false' ondragstart='return false' style='font-size: 10px' width=" + option.width + " height=" + option.height + "><img src='" + option.icon + "'/>" + option.name + "</a></li>");
     }
 
     $("#boxRight ul li").on('click', function (e) {
         if (e.altKey) return;
         let val = $(this).data("value");
-        if (val == undefined || val == null) {
+        let _windowOption = $(this).children("a").attr('windowOption');
+        let windowOption = $.parseJSON(_windowOption == 'undefined' ? '{}' : _windowOption);
+        if (val == undefined || val == null || val.isDestroyed()) {
             let defaultOptions = {
                 initWindow: {
                     width: Number($(this).children("a").attr('width')),
-                    height: Number($(this).children("a").attr('height'))
+                    height: Number($(this).children("a").attr('height')),
+                    frame: windowOption.frame == 'undefined' ? false : windowOption.frame
                 },
                 style: {
                     filePath: $(this).children("a").attr('href'),
-                    openDevTools: true
+                    openDevTools: windowOption.openDevTools == 'undefined' ? false : windowOption.openDevTools
                 }
             };
             $(this).data("value", createNewWin(defaultOptions));
@@ -91,7 +94,7 @@ var leftOptions = [
         name: "字符串",
         icon: "../../static/image/box/str.png"
     },
-]
+];
 
 var rightOptions = [
     {
@@ -130,8 +133,15 @@ var rightOptions = [
         height: 600
     },
     {
-        name: "bbb",
-        icon: "../../static/image/box/time.png"
+        name: "计划",
+        icon: "../../static/image/box/time.png",
+        href: "../plan/plan.html",
+        width: remote.app.screenWidth,
+        height: remote.app.screenHeight - 1,
+        windowOption: {
+            frame: true,
+            openDevTools: false
+        }
     },
     {
         name: "bbb",

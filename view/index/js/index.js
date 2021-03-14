@@ -136,8 +136,8 @@ var rightOptions = [
         name: "计划",
         icon: "../../static/image/box/time.png",
         href: "../plan/plan.html",
-        width: remote.app.screenWidth,
-        height: remote.app.screenHeight - 1,
+        width: remote.app.screenWidth-600,
+        height: remote.app.screenHeight - 500,
         windowOption: {
             frame: true,
             openDevTools: false

@@ -1,8 +1,9 @@
 import windowControl from "../../../common/custom/windowControl.js";
+import dbUtil from "../../../common/custom/dbUtil.js";
 
 const {remote} = require('electron');
 var options = {
-    url: 'http://www.nmc.cn/rest/province/all?_=1615625990208',         //请求后台的URL（*）
+    // url: 'http://www.nmc.cn/rest/province/all?_=1615625990208',         //请求后台的URL（*）
     // ajax : function (request) {
     //     $.ajax({
     //         type : "GET",
@@ -22,6 +23,7 @@ var options = {
     //         }
     //     });
     // },
+    data: dbUtil.get("planTable"),
     method: 'get',                      //请求方式（*）
     toolbar: '#toolbar',                //工具按钮用哪个容器
     striped: true,                      //是否显示行间隔色
@@ -33,7 +35,7 @@ var options = {
     sidePagination: "client",           //分页方式：client客户端分页，server服务端分页（*）
     pageNumber: 1,                       //初始化加载第一页，默认第一页
     // pageSize: 3,                       //每页的记录行数（*）
-    pageList: [5,10],        //可供选择的每页的行数（*）
+    pageList: [5, 10],        //可供选择的每页的行数（*）
     search: true,                       //是否显示表格搜索，此搜索是客户端搜索，不会进服务端，所以，个人感觉意义不大
     strictSearch: true,
     showColumns: false,                  //是否显示所有的列
@@ -41,19 +43,39 @@ var options = {
     minimumCountColumns: 2,             //最少允许的列数
     clickToSelect: true,                //是否启用点击选中行
     // height: 500,                        //行高，如果没有设置height属性，表格自动根据记录条数觉得表格高度
-    uniqueId: "ID",                     //每一行的唯一标识，一般为主键列
-    showToggle: false,                    //是否显示详细视图和列表视图的切换按钮
+    uniqueId: "id",                     //每一行的唯一标识，一般为主键列
+    showToggle: false,                    //是否显示详细视图和列表视图的切换按钮0
     cardView: false,                    //是否显示详细视图
     detailView: false,                   //是否显示父子表
-    columns: [{
-        checkbox: true
-    }, {
-        field: 'code',
-        title: '部门名称'
-    }, {
-        field: 'name',
-        title: '描述'
-    },]
+    columns: [
+        {
+            checkbox: true
+        },
+        {
+            field: 'id',
+            title: 'id',
+            width: 20,
+            formatter: function (value, row, index) {
+                return index + 1;
+            }
+        },
+        {
+            field: 'title',
+            title: '标题'
+        },
+        {
+            field: 'content',
+            title: '内容'
+        },
+        {
+            field: 'createDate',
+            title: '创建时间'
+        },
+        {
+            field: 'updateDate',
+            title: '更新时间'
+        }
+    ]
     // , theadClasses: "thead-dark",//这里设置表头样式
     // classes: "table table-bordered table-striped table-sm table-dark",
 };
@@ -62,5 +84,8 @@ $(document).ready(function () {
     windowControl.move(thisWindow, $(".container"), false, true);
 
     $('#table').bootstrapTable(options);
+    $("[name='refresh']").on('click', function () {
+        $('#table').bootstrapTable('load', dbUtil.get("planTable"));
+    });
 });
 

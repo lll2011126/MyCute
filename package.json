@@ -5,9 +5,13 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "electron .",
-	"package":"electron-packager . mycute --platform=win32 --arch=x64 --icon=./static/image/mycute.ico --out=./out --asar --app-version=0.0.1 --overwrite --ignore=node_modules --electron-version 9.2.1"
+    "package": "electron-packager . mycute --platform=win32 --arch=x64 --icon=./static/image/mycute.ico --out=./out --asar --app-version=0.0.1 --overwrite --ignore=node_modules --electron-version 9.2.1"
   },
   "author": "",
   "license": "ISC",
-  "description": ""
+  "description": "",
+  "dependencies": {
+    "lowdb": "^1.0.0",
+    "shortid": "^2.2.16"
+  }
 }

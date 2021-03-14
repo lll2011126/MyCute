@@ -140,7 +140,7 @@ var rightOptions = [
         height: remote.app.screenHeight - 500,
         windowOption: {
             frame: true,
-            openDevTools: false
+            openDevTools: true
         }
     },
     {

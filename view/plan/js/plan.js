@@ -2,6 +2,43 @@ import windowControl from "../../../common/custom/windowControl.js";
 import dbUtil from "../../../common/custom/dbUtil.js";
 
 const {remote} = require('electron');
+
+var tableName = 'planTable';
+var columns = [
+    {
+        checkbox: true
+    },
+    {
+        field: 'tableId',
+        title: '序号',
+        width: 50,
+        formatter: function (value, row, index) {
+            return index + 1;
+        }
+    },
+    {
+        field: 'title',
+        title: '标题',
+        width: 150,
+        editable: true
+    },
+    {
+        field: 'content',
+        title: '内容',
+        width: 600,
+        editable: true
+    },
+    {
+        field: 'createDate',
+        title: '创建时间',
+        width: 150
+    },
+    {
+        field: 'updateDate',
+        title: '更新时间',
+        width: 150
+    }
+];
 var options = {
     // url: 'http://www.nmc.cn/rest/province/all?_=1615625990208',         //请求后台的URL（*）
     // ajax : function (request) {
@@ -23,7 +60,7 @@ var options = {
     //         }
     //     });
     // },
-    data: dbUtil.get("planTable"),
+    data: dbUtil.getAllByTableName(tableName),
     method: 'get',                      //请求方式（*）
     toolbar: '#toolbar',                //工具按钮用哪个容器
     striped: true,                      //是否显示行间隔色
@@ -41,51 +78,78 @@ var options = {
     showColumns: false,                  //是否显示所有的列
     showRefresh: true,                  //是否显示刷新按钮
     minimumCountColumns: 2,             //最少允许的列数
-    clickToSelect: true,                //是否启用点击选中行
+    clickToSelect: false,                //是否启用点击选中行
+    // showPaginationSwitch: true,     //显示切换分页按钮
     // height: 500,                        //行高，如果没有设置height属性，表格自动根据记录条数觉得表格高度
     uniqueId: "id",                     //每一行的唯一标识，一般为主键列
     showToggle: false,                    //是否显示详细视图和列表视图的切换按钮0
     cardView: false,                    //是否显示详细视图
     detailView: false,                   //是否显示父子表
-    columns: [
-        {
-            checkbox: true
-        },
-        {
-            field: 'id',
-            title: 'id',
-            width: 20,
-            formatter: function (value, row, index) {
-                return index + 1;
+    clickEdit: true,
+    columns: columns,
+    onClickCell: function (field, value, row, $element) {
+        let editable = false;
+        columns.forEach(function (item, index) {
+            if (item.field == field) {
+                editable = item.editable;
             }
-        },
-        {
-            field: 'title',
-            title: '标题'
-        },
-        {
-            field: 'content',
-            title: '内容'
-        },
-        {
-            field: 'createDate',
-            title: '创建时间'
-        },
-        {
-            field: 'updateDate',
-            title: '更新时间'
+        });
+        if (editable) {
+            $element.attr('contenteditable', true);
+            $element.blur(function () {
+                let index = $element.parent().data('index');
+                let tdValue = $element.html();
+                updateData(index, field, tdValue);
+                updateData(index, 'updateDate', dbUtil.nowDate());
+                dbUtil.updateById(tableName, row.id, row);
+            });
         }
-    ]
+    }
     // , theadClasses: "thead-dark",//这里设置表头样式
     // classes: "table table-bordered table-striped table-sm table-dark",
 };
 $(document).ready(function () {
     const thisWindow = remote.getCurrentWindow();
-    windowControl.move(thisWindow, $(".container"), false, true);
+    windowControl.move(thisWindow, $("#planBox"), false, true);
 
     $('#table').bootstrapTable(options);
+    //刷新
     $("[name='refresh']").on('click', function () {
-        $('#table').bootstrapTable('load', dbUtil.get("planTable"));
+        $('#table').bootstrapTable('load', dbUtil.getAllByTableName(tableName));
+    });
+    //添加一行
+    $("#addRow").click(function () {
+        let row = {
+            id: dbUtil.shortId(),
+            createDate: dbUtil.nowDate()
+        };
+        $('#table').bootstrapTable('insertRow', {
+            index: 0,
+            row: row
+        });
+        dbUtil.insert(tableName, row);
+    });
+    //删除选中行
+    $("#deleteRow").click(function () {
+        let selections = $('#table').bootstrapTable('getSelections');
+        let ids = selections.map((item) => {
+            return item.id
+        });
+        $('#table').bootstrapTable('remove', {
+            field: "id",
+            values: ids
+        });
+        dbUtil.removeByIds(tableName, ids);
     });
 });
 
+function updateData(index, field, value) {
+    $('#table').bootstrapTable('updateCell', {
+        index: index,       //行索引
+        field: field,       //列名
+        value: value        //cell值
+    })
+}
+
+//var METHODS = ['getOptions', 'refreshOptions', 'getData', 'getSelections', 'load', 'append', 'prepend', 'remove', 'removeAll', 'insertRow', 'updateRow', 'getRowByUniqueId', 'updateByUniqueId', 'removeByUniqueId', 'updateCell', 'updateCellByUniqueId', 'showRow', 'hideRow', 'getHiddenRows', 'showColumn', 'hideColumn', 'getVisibleColumns', 'getHiddenColumns', 'showAllColumns', 'hideAllColumns', 'mergeCells', 'checkAll', 'uncheckAll', 'checkInvert', 'check', 'uncheck', 'checkBy', 'uncheckBy', 'refresh', 'destroy', 'resetView', 'showLoading', 'hideLoading', 'togglePagination', 'toggleFullscreen', 'toggleView', 'resetSearch', 'filterBy', 'scrollTo', 'getScrollPosition', 'selectPage', 'prevPage', 'nextPage', 'toggleDetailView', 'expandRow', 'collapseRow', 'expandRowByUniqueId', 'collapseRowByUniqueId', 'expandAllRows', 'collapseAllRows', 'updateColumnTitle', 'updateFormatText'];
+//

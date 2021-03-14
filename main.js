@@ -104,5 +104,5 @@ app.clearMove = function clearMove() {
 };
 
 app.console = function (message) {
-    console.log(message.toString());
+    message.toString();
 };

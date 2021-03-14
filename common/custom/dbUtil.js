@@ -29,14 +29,27 @@ function column(columnName, data) {
 }
 
 const dbUtil = {
-        check: function () {
-            remote.app.console(db.get('user.name').value());
-
-        },
-        get: function (tableName) {
-            let data = db.read().get(tableName).value();
-            return data;
-        }
+    shortId: function () {
+        return shortId.generate();
+    },
+    nowDate: function () {
+        let date = new Date();
+        return date.toLocaleDateString().replace(/\//g, "-") + " " + date.toTimeString().substr(0, 8)
+    },
+    getAllByTableName: function (tableName) {
+        let data = db.read().get(tableName).value();
+        return data;
+    },
+    removeByIds: function (tableName, id) {
+        id.forEach(function (item, index) {
+            db.read().get(tableName).remove({id: item}).write();
+        });
+    },
+    insert: function (tableName, newData) {
+        db.read().get(tableName).push(newData).write();
+    },
+    updateById: function (tableName, id, newData) {
+        db.read().get(tableName).find({id: id}).assign(newData).write();
     }
-;
+};
 export default dbUtil;

@@ -3,12 +3,11 @@ const path = require('path');
 
 const low = require('lowdb');
 const FileSync = require('lowdb/adapters/FileSync');  // 有多种适配器可选择
-// const adapter = new FileSync('db.json'); // 申明一个适配器
-// const db = low(adapter);
-
-
-const adapter = new FileSync(path.join(__dirname, '../../db.json'));
+const adapter = new FileSync('resources/db.json'); // 申明一个适配器
 const db = low(adapter);
+
+// const adapter = new FileSync(path.join(__dirname, '../../static/db.json'));
+// const db = low(adapter);
 
 const shortId = require('shortid');
 const dbUtil = {

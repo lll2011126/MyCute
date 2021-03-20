@@ -1,6 +1,8 @@
 import windowControl from "../../../common/custom/windowControl.js";
 import dbUtil from "../../../common/custom/dbUtil.js";
+import ipcRendererUtil from "../../../common/custom/ipcRendererUtil.js";
 
+const path = require('path');
 const {remote} = require('electron');
 
 var tableName = 'planTable';
@@ -37,6 +39,17 @@ var columns = [
         field: 'updateDate',
         title: '更新时间',
         width: 150
+    },
+    {
+        field: 'operate',
+        title: '操作',
+        width: 100,
+        formatter: function (value, row, index) {
+            return [
+                '<button name="edit" type="button" class="btn btn-primary btn-xs">进入</button>',
+                '<button name="detail" type="button" class="btn btn-primary btn-xs">详情</button>'
+            ].join("&nbsp;&nbsp;");
+        }
     }
 ];
 var options = {
@@ -109,7 +122,7 @@ var options = {
     // classes: "table table-bordered table-striped table-sm table-dark",
 };
 $(document).ready(function () {
-    const thisWindow = remote.getCurrentWindow();
+    let thisWindow = remote.getCurrentWindow();
     windowControl.move(thisWindow, $("#planBox"), false, true);
 
     $('#table').bootstrapTable(options);
@@ -141,6 +154,14 @@ $(document).ready(function () {
         });
         dbUtil.removeByIds(tableName, ids);
     });
+
+    $("[name='edit']").click(function () {
+        // window.location ="./noteDetail.html";
+        // let a =window.btoa(encodeURIComponent('我是啊  啊啊'));
+        // console.log(a);
+        // console.log(decodeURIComponent(window.atob(a)))
+        // ipcRendererUtil.switchPage(thisWindow.id, './view/note/noteDetail.html');
+    });
 });
 
 function updateData(index, field, value) {
@@ -150,5 +171,3 @@ function updateData(index, field, value) {
         value: value        //cell值
     })
 }
-
-//var METHODS = ['getOptions', 'refreshOptions', 'getData', 'getSelections', 'load', 'append', 'prepend', 'remove', 'removeAll', 'insertRow', 'updateRow', 'getRowByUniqueId', 'updateByUniqueId', 'removeByUniqueId', 'updateCell', 'updateCellByUniqueId', 'showRow', 'hideRow', 'getHiddenRows', 'showColumn', 'hideColumn', 'getVisibleColumns', 'getHiddenColumns', 'showAllColumns', 'hideAllColumns', 'mergeCells', 'checkAll', 'uncheckAll', 'checkInvert', 'check', 'uncheck', 'checkBy', 'uncheckBy', 'refresh', 'destroy', 'resetView', 'showLoading', 'hideLoading', 'togglePagination', 'toggleFullscreen', 'toggleView', 'resetSearch', 'filterBy', 'scrollTo', 'getScrollPosition', 'selectPage', 'prevPage', 'nextPage', 'toggleDetailView', 'expandRow', 'collapseRow', 'expandRowByUniqueId', 'collapseRowByUniqueId', 'expandAllRows', 'collapseAllRows', 'updateColumnTitle', 'updateFormatText'];

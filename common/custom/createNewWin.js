@@ -21,12 +21,12 @@ var defaultOptions = {
         openDevTools: false
     }
 };
-var tempOptions = {};
+
 const createNewWin = function (options) {
     const BrowserWindow = remote.BrowserWindow;
-    var tempOptions = $.extend(true, {}, defaultOptions);//使用一个临时的对象避免数据污染
-    var lastOptions = $.extend(true, tempOptions, options);
-    var var1 = new BrowserWindow(lastOptions.initWindow);
+    let tempOptions = $.extend(true, {}, defaultOptions);//使用一个临时的对象避免数据污染
+    let lastOptions = $.extend(true, tempOptions, options);
+    let var1 = new BrowserWindow(lastOptions.initWindow);
     var1.loadURL(path.join('file:', __dirname, lastOptions.style.filePath));
     var1.setSkipTaskbar(lastOptions.style.skipTaskbar);
     var1.setAlwaysOnTop(lastOptions.style.alwaysOnTop);

@@ -135,7 +135,7 @@ var rightOptions = [
     {
         name: "计划",
         icon: "../../static/image/box/time.png",
-        href: "../plan/plan.html",
+        href: "../note/note.html",
         width: remote.app.screenWidth-600,
         height: remote.app.screenHeight - 500,
         windowOption: {

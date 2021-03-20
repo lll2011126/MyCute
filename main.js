@@ -1,13 +1,10 @@
 const {app, BrowserWindow, screen, ipcMain, Menu, Tray} = require('electron');
-
-//nodejs中的path模块
 const path = require('path');
-// console.log(require.resolve('electron'))
-// console.log(require('electron'))
 
-var mainWindow = null;
+/*******************************************初始化主窗口************************************************/
+let mainWindow = null;
 let tray = null;
-var defaultOptions = {
+let defaultOptions = {
     webPreferences: {
         nodeIntegration: true,//require未定义的问题
         enableRemoteModule: true//remote模块
@@ -23,12 +20,9 @@ var defaultOptions = {
 
 app.on('ready', function () {
     Menu.setApplicationMenu(null);//去掉菜单
-    let screenWidth = screen.getPrimaryDisplay().workAreaSize.width;
-    let screenHeight = screen.getPrimaryDisplay().workAreaSize.height;
 
     mainWindow = new BrowserWindow(defaultOptions);
-
-    mainWindow.setAlwaysOnTop(true);
+    mainWindow.setAlwaysOnTop(true);//始终置顶
     mainWindow.setSkipTaskbar(true);//true为不显示任务栏
     // mainWindow.webContents.openDevTools();//开启调试界面，开启后透明失效
     mainWindow.loadURL(path.join('file:', __dirname, './view/index/index.html'));
@@ -41,8 +35,10 @@ app.on('ready', function () {
         });
         mainWindow = null;
     });
-
     initTray();//添加托盘
+
+    let screenWidth = screen.getPrimaryDisplay().workAreaSize.width;
+    let screenHeight = screen.getPrimaryDisplay().workAreaSize.height;
     this.mainwin = mainWindow;//app自定义变量maiwin，方便remote调用
     this.screenWidth = screenWidth;
     this.screenHeight = screenHeight;
@@ -64,6 +60,7 @@ function initTray() {
     });
 }
 
+/*******************************************自定义方法************************************************/
 /**
  * 移动窗口的函数
  * @param win 必须是remote获取的对象
@@ -99,10 +96,28 @@ app.windowMove = function windowMove(win) {
     });
 };
 
+/**
+ * 清除移动监听，避免去掉移动事件失败
+ */
 app.clearMove = function clearMove() {
     ipcMain.removeAllListeners("window-move-open");
 };
 
-app.console = function (message) {
-    message.toString();
+/**
+ * 打印
+ * @param message
+ */
+app.consoleString = function (message) {
+    console.log(message.toString());
 };
+app.consoleObject = function (message) {
+    console.log(JSON.stringify(message));
+};
+
+/**
+ * 渲染进程切换页面
+ */
+ipcMain.on('switch-page', (event, id, urlPath) => {
+    console.log(id + " " + urlPath);
+    BrowserWindow.fromId(id).loadURL(path.join('file:', __dirname, urlPath));
+});

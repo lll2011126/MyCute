@@ -2,16 +2,16 @@ window.nodeRequire = require;
 const {ipcRenderer} = window["require"]("electron");
 const {remote} = require('electron');
 
-var screenWidth = remote.app.screenWidth;
-var screenHeight = remote.app.screenHeight;
+let screenWidth = remote.app.screenWidth;
+let screenHeight = remote.app.screenHeight;
 
-var speed = 20;
-var timeSpeed = 8;
-var waitTime = 300;
+let speed = 20;//移动长度
+let timeSpeed = 8;//移动间隔
+let waitTime = 300;//鼠标离开事件
 
-var waitTimeOut = null;
-var windowMoveIn = null;
-var windowMoveOut = null;
+let waitTimeOut = null;
+let windowMoveIn = null;
+let windowMoveOut = null;
 
 const windowControl = {
     /**
@@ -198,6 +198,11 @@ const windowControl = {
         window.hide();
         window.show();
     },
+    /**
+     * 穿透非指定区域
+     * @param window
+     * @param area
+     */
     click: function (window, area) {
         // //穿透其他区域
         // area.on('mouseenter', () => {
@@ -207,6 +212,10 @@ const windowControl = {
         //     window.setIgnoreMouseEvents(true, {forward: true});
         // });
     },
+    /**
+     * 阻止某个元素拖动
+     * @param area
+     */
     stopPropagation: function (area) {
         area.bind('mousedown', function (event) {
             event.stopPropagation();

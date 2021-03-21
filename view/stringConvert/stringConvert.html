@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>string Convert</title>
+    <link href="../../common/bootstrap/bootstrap-3.4.1/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../../static/less/window.less" rel="stylesheet/less" type="text/css">
+    <script>window.$ = window.jQuery = require('../../common/jquery-3.5.1.min.js');</script>
+    <script src='../../common/bootstrap/bootstrap-3.4.1/js/bootstrap.min.js'></script>
+    <script src='../../common/less/less.min.js'></script>
+    <script type="module" src="./js/stringConvert.js"></script>
+    <style type="text/css">
+
+    </style>
+
+</head>
+<body>
+<div id="content" class="window-content">
+    <div>
+        <ul class="nav nav-tabs">
+            <li class="active"><a href="#stringTab" data-toggle="tab" ondragstart="return false">字符</a></li>
+            <li><a href="#jsonTab" data-toggle="tab" ondragstart="return false">JSON</a></li>
+        </ul>
+
+        <div class="tab-content">
+            <div class="tab-pane fade in active" id="stringTab">
+                <form class="form-inline" role="form">
+                    <div class="form-group">
+                        <label>去掉换行</label>
+                    </div>
+                    <div class="form-group">
+                        <label>去掉空格</label>
+                    </div>
+                    <div class="form-group">
+                        <label>去掉换行和空格</label>
+                    </div>
+                    <div class="form-group">
+                        <label>转换为大写</label>
+                    </div>
+                    <div class="form-group">
+                        <label>转换为小写</label>
+                    </div>
+                    <div class="form-group">
+                        <label>驼峰</label>
+                    </div>
+                </form>
+                <form class="form-inline" role="form">
+                    <textarea spellcheck="false" placeholder="粘贴字符到此处"></textarea>
+                    <textarea spellcheck="false"></textarea>
+                </form>
+            </div>
+            <div class="tab-pane fade" id="jsonTab">
+                <form class="form-inline" role="form">
+                    <div class="form-group">
+                        <label>去掉空格</label>
+                    </div>
+                    <div class="form-group">
+                        <label>展开</label>
+                    </div>
+                </form>
+                <form class="form-inline" role="form">
+                    <textarea spellcheck="false" placeholder="粘贴字符到此处"></textarea>
+                    <textarea spellcheck="false"></textarea>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

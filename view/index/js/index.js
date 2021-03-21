@@ -107,7 +107,7 @@ var rightOptions = [
     {
         name: "时间戳",
         icon: "../../static/image/box/time.png",
-        href: "../time/timeStamp.html",
+        href: "../timeStamp/timeStamp.html",
         width: 800,
         height: 300
     },
@@ -142,6 +142,17 @@ var rightOptions = [
             frame: true,
             openDevTools: true
         }
+    },
+    {
+        name: "字符串",
+        icon: "../../static/image/box/str.png",
+        href: "../stringConvert/stringConvert.html",
+        width: 1000,
+        height: 600,
+        // windowOption: {
+        //     frame: true,
+        //     openDevTools: true
+        // }
     },
     {
         name: "bbb",

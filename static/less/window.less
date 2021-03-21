@@ -1,18 +1,33 @@
+/**
+主窗口背景
+ */
 @transparent: #ffffff00;
 @backgroundColor: #F8F8FFA0;
-
+/**
+按钮
+ */
 @buttonColor: #9FB6CD50;
 @buttonColorHover: #9FB6CD90;
 @buttonColorActive: #9FB6CDA0;
-
+/**
+文字输入框（单行）
+ */
 @textColor: #9FB6CD50;
 @textColorFocus: #9FB6CD90;
 @textBorder: #4876FFEA0;
-
+/**
+选择框
+ */
 @selectColor: #CAE1FFA0;
-
+/**
+label
+ */
 @labelColor: #6CA6CDA0;
 @labelBorder: #4876FFA0;
+/**
+bootstrap导航栏
+ */
+@navTabsColor: #CAE1FFA0;
 
 /**
 自定义窗口样式（透明），必须在别的样式文件之后引用
@@ -90,6 +105,14 @@ select {
   outline: none;
 }
 
+/**
+bootstrap下修改select颜色
+ */
+select.form-control {
+  background-color: @selectColor;
+  outline: none;
+}
+
 select > option {
   background-color: @selectColor;
   outline: none;
@@ -105,5 +128,58 @@ label {
 label:hover {
   background-color: @labelColor;
   box-shadow: 0px 0px 60px @labelColor;
-  border:1px solid @labelBorder;
+  border: 1px solid @labelBorder;
+}
+
+/************textarea***************/
+textarea {
+  resize: none; //不可拖动
+
+  width: 43%;
+  height: 350px;
+  margin: 2%;
+  border-color: #2fa0ec90;
+  background-color: #2fa8ec25;
+}
+
+textarea:focus {
+  outline: none;
+  border-color: #3755ad90;
+  box-shadow: 0px 0px 10px #3755ad30;
+}
+
+/**
+滑动条宽度
+ */
+textarea::-webkit-scrollbar {
+  width: 3px;
+}
+
+/**
+按钮
+ */
+textarea::-webkit-scrollbar-button {
+  display: none
+}
+
+/**
+滑动隧道
+ */
+textarea::-webkit-scrollbar-track {
+  background-color: #9175bd90;
+}
+
+/**
+滑动块
+ */
+textarea::-webkit-scrollbar-thumb {
+  background-color: #9FB6CD90;
+}
+
+/************textarea***************/
+/**
+bootstrap导航栏
+ */
+.nav-tabs > li.active > a, .nav-tabs > li.active > a:focus, .nav-tabs > li.active > a:hover {
+  background-color: @navTabsColor
 }

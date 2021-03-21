@@ -1,5 +1,5 @@
 import windowControl from "../../../common/custom/windowControl.js";
-import createNewWin from "../../../common/custom/createNewWin.js";
+import newWindow from "../../../common/custom/newWindow.js";
 
 const {remote} = require('electron');
 
@@ -62,7 +62,7 @@ $(document).ready(function () {
                     openDevTools: windowOption.openDevTools == 'undefined' ? false : windowOption.openDevTools
                 }
             };
-            $(this).data("value", createNewWin(defaultOptions));
+            $(this).data("value", newWindow(defaultOptions));
         } else {
             val.show();
         }
@@ -107,9 +107,9 @@ var rightOptions = [
     {
         name: "时间戳",
         icon: "../../static/image/box/time.png",
-        href: "../time/time.html",
-        width: 650,
-        height: 200
+        href: "../time/timeStamp.html",
+        width: 800,
+        height: 300
     },
     {
         name: "cron",
@@ -136,7 +136,7 @@ var rightOptions = [
         name: "计划",
         icon: "../../static/image/box/time.png",
         href: "../note/note.html",
-        width: remote.app.screenWidth-600,
+        width: remote.app.screenWidth - 600,
         height: remote.app.screenHeight - 500,
         windowOption: {
             frame: true,

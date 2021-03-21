@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>timeStamp convert</title>
+    <link href="../../common/bootstrap/bootstrap-3.4.1/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../../static/less/window.less" rel="stylesheet/less" type="text/css">
+    <script>window.$ = window.jQuery = require('../../common/jquery-3.5.1.min.js');</script>
+    <script src='../../common/bootstrap/bootstrap-3.4.1/js/bootstrap.min.js'></script>
+    <script src='../../common/less/less.min.js'></script>
+    <script type="module" src="js/timeStamp.js"></script>
+    <style type="text/css">
+    </style>
+</head>
+<body>
+
+
+<div id="content" class="window-content">
+    <div>
+        <div style="padding-bottom: 10px">
+            <form class="form-inline" role="form" id="nowDate">
+                <div class="form-group">
+                    现在：&nbsp;&nbsp;<label>0</label>
+                </div>
+                <div class="form-group">
+                    <label>1970-1-1 08:00:00</label>
+                </div>
+            </form>
+        </div>
+        <div style="padding-bottom: 10px">
+
+            <!--            <div class="input-group input-group-sm" style="display: inline">-->
+            <!--                <span class="input-group-addon">@</span>-->
+            <!--                <input type="text" class="form-control" placeholder="Twitterhandle">-->
+            <!--            </div>-->
+            <form class="form-inline" role="form" id="toTimeForm">
+                <div class="form-group">
+                    时间戳：<input type="text" class="form-control">
+                </div>
+                <div class="form-group">
+                    <select class="form-control">
+                        <option>秒</option>
+                        <option>毫秒</option>
+                    </select>
+                    <input type="button" class="form-control" id="toTime" value="转换>>">
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control">&nbsp;&nbsp;北京时间
+                </div>
+            </form>
+        </div>
+        <div style="padding-bottom: 10px">
+            <form class="form-inline" role="form" id="timeToForm">
+                <div class="form-group">
+                    北京时间：<input type="text" class="form-control">
+                </div>
+                <div class="form-group">
+                    <input type="button" class="form-control" id="timeTo" value="转换>>">
+                    <input type="text" class="form-control">
+                </div>
+                <div class="form-group">
+                    <select class="form-control">
+                        <option>秒</option>
+                        <option>毫秒</option>
+                    </select>
+                    &nbsp;&nbsp;时间戳
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>

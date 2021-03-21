@@ -1,4 +1,3 @@
-import createNewWin from "./../../../common/custom/createNewWin.js"
 import windowControl from "../../../common/custom/windowControl.js";
 
 const {remote} = require('electron');

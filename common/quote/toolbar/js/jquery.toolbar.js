@@ -14,8 +14,6 @@
  * <https://raw.github.com/paulkinzett/toolbar/master/LICENSE.txt>
  */
 
-import windowControl from "../../../custom/windowControl";
-import createNewWin from "../../../custom/createNewWin";
 
 if ( typeof Object.create !== 'function' ) {
     Object.create = function( obj ) {

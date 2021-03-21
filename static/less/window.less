@@ -1,0 +1,109 @@
+@transparent: #ffffff00;
+@backgroundColor: #F8F8FFA0;
+
+@buttonColor: #9FB6CD50;
+@buttonColorHover: #9FB6CD90;
+@buttonColorActive: #9FB6CDA0;
+
+@textColor: #9FB6CD50;
+@textColorFocus: #9FB6CD90;
+@textBorder: #4876FFEA0;
+
+@selectColor: #CAE1FFA0;
+
+@labelColor: #6CA6CDA0;
+@labelBorder: #4876FFA0;
+
+/**
+自定义窗口样式（透明），必须在别的样式文件之后引用
+ */
+html {
+  user-select: none;
+  overflow: hidden;
+}
+
+/**
+窗口要透明的前提是body颜色透明
+ */
+body {
+  background-color: @transparent;
+}
+
+/**
+最外层div，有阴影
+ */
+.window-content {
+  position: absolute;
+
+  top: 10%;
+  right: 4%;
+  margin: auto;
+  bottom: 10%;
+  left: 4%;
+
+  /*background-color: #FFB5C5A0;*/
+  background-color: @backgroundColor;
+  border-radius: 10px;
+  /*box-shadow: 0 0 20px #FFB5C5A0;*/
+  box-shadow: 0 0 20px @backgroundColor;
+  overflow: hidden;
+}
+
+.window-content > div {
+  padding: 2%;
+}
+
+/*********按钮*************/
+input[type="button"] {
+  background-color: @buttonColor;
+  box-shadow: 0px 0px 30px @buttonColor;
+}
+
+input[type="button"]:hover {
+  background-color: @buttonColorHover;
+  box-shadow: 0px 0px 30px @buttonColorHover;
+}
+
+input[type="button"]:active {
+  background-color: @buttonColorActive;
+  box-shadow: 0px 0px 30px @buttonColorActive;
+}
+
+/*********输入框*************/
+input[type="text"] {
+  width: 25%;
+  padding-right: 10px;
+  background-color: @backgroundColor;
+  box-shadow: 0px 0px 30px @textColor;
+  border: 1px solid @transparent;
+  outline: none;
+}
+
+input[type="text"]:focus {
+  box-shadow: 0px 0px 30px @textColorFocus;
+  border: 1px solid @textBorder;
+}
+
+/***********选项框**********/
+select {
+  background-color: @selectColor;
+  outline: none;
+}
+
+select > option {
+  background-color: @selectColor;
+  outline: none;
+}
+
+/************label***************/
+label {
+  display: inline-block;
+  margin-right: 20px;
+  border: 1px solid @transparent;
+}
+
+label:hover {
+  background-color: @labelColor;
+  box-shadow: 0px 0px 60px @labelColor;
+  border:1px solid @labelBorder;
+}

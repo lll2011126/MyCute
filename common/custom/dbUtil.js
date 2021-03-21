@@ -14,8 +14,10 @@ const dbUtil = {
     shortId: function () {
         return shortId.generate();
     },
-    nowDate: function () {
-        let date = new Date();
+    nowDate: function (date) {
+        if (date == undefined || date == null) {
+            date = new Date();
+        }
         return date.toLocaleDateString().replace(/\//g, "-") + " " + date.toTimeString().substr(0, 8)
     },
     getAllByTableName: function (tableName) {

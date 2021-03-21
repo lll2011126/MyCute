@@ -22,7 +22,7 @@ var defaultOptions = {
     }
 };
 
-const createNewWin = function (options) {
+const newWindow = function (options) {
     const BrowserWindow = remote.BrowserWindow;
     let tempOptions = $.extend(true, {}, defaultOptions);//使用一个临时的对象避免数据污染
     let lastOptions = $.extend(true, tempOptions, options);
@@ -38,4 +38,4 @@ const createNewWin = function (options) {
     });
     return var1;
 };
-export default createNewWin;
+export default newWindow;

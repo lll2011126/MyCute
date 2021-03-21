@@ -220,6 +220,13 @@ const windowControl = {
         area.bind('mousedown', function (event) {
             event.stopPropagation();
         });
+    },
+    stopPropagations: function (areas) {
+        for (let i = 0; i < areas.length; i++) {
+            areas[i].bind('mousedown', function (event) {
+                event.stopPropagation();
+            });
+        }
     }
 };
 

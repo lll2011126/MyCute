@@ -100,9 +100,13 @@ var rightOptions = [
     {
         name: "字符串",
         icon: "../../static/image/box/str.png",
-        href: "../toolbox/str.html",
+        href: "../stringConvert/stringConvert.html",
         width: 1000,
-        height: 600
+        height: 700,
+        // windowOption: {
+        //     frame: true,
+        //     openDevTools: true
+        // }
     },
     {
         name: "时间戳",
@@ -142,17 +146,6 @@ var rightOptions = [
             frame: true,
             openDevTools: true
         }
-    },
-    {
-        name: "字符串",
-        icon: "../../static/image/box/str.png",
-        href: "../stringConvert/stringConvert.html",
-        width: 1000,
-        height: 600,
-        // windowOption: {
-        //     frame: true,
-        //     openDevTools: true
-        // }
     },
     {
         name: "bbb",

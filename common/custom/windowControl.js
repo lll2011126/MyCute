@@ -205,12 +205,12 @@ const windowControl = {
      */
     click: function (window, area) {
         // //穿透其他区域
-        // area.on('mouseenter', () => {
-        //     window.setIgnoreMouseEvents(false);
-        // });
-        // area.on('mouseleave', () => {
-        //     window.setIgnoreMouseEvents(true, {forward: true});
-        // });
+        area.on('mouseenter', () => {
+            window.setIgnoreMouseEvents(false);
+        });
+        area.on('mouseleave', () => {
+            window.setIgnoreMouseEvents(true, {forward: true});
+        });
     },
     /**
      * 阻止某个元素拖动

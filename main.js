@@ -3,6 +3,8 @@ const path = require('path');
 
 /*******************************************初始化主窗口************************************************/
 let mainWindow = null;
+let closeWindow = null;
+let dir = -1;//控制关闭窗口的状态
 let tray = null;
 let defaultOptions = {
     webPreferences: {
@@ -16,6 +18,23 @@ let defaultOptions = {
     frame: false,
     resizable: false,
     transparent: true,
+};
+
+let closeOptions = {
+    webPreferences: {
+        nodeIntegration: true,
+        enableRemoteModule: true
+    },
+    x: -8,
+    y: -8,
+    width: 158,
+    height: 158,
+    frame: false,
+    resizable: false,
+    transparent: true,
+    hasShadow: false,
+    maximizable: false,
+    minimizable: false,
 };
 
 app.on('ready', function () {
@@ -42,6 +61,13 @@ app.on('ready', function () {
     this.mainwin = mainWindow;//app自定义变量maiwin，方便remote调用
     this.screenWidth = screenWidth;
     this.screenHeight = screenHeight;
+
+    closeWindow = new BrowserWindow(closeOptions);
+    closeWindow.setAlwaysOnTop(true);
+    closeWindow.setSkipTaskbar(true);
+    closeWindow.loadURL(path.join('file:', __dirname, './view/close/close.html'));
+    this.closeWindow = closeWindow;
+    this.dir = dir;
 });
 
 function initTray() {
@@ -74,6 +100,8 @@ app.windowMove = function windowMove(win) {
 
     ipcMain.on("window-move-open", (events, canMoving) => {
         if (canMoving) {
+            app.dir = 1;
+            closeWindow.show();
             // 读取原位置
             winStartPosition = {x: win.getPosition()[0], y: win.getPosition()[1]};
             mouseStartPosition = screen.getCursorScreenPoint();
@@ -90,6 +118,8 @@ app.windowMove = function windowMove(win) {
                 win.setPosition(x, y, true);
             }, 10);
         } else {
+            app.dir = -1;
+            closeWindow.show();
             clearInterval(movingInterval);
             movingInterval = null;
         }

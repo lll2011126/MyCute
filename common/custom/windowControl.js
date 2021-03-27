@@ -201,15 +201,20 @@ const windowControl = {
     /**
      * 穿透非指定区域
      * @param window
-     * @param area
+     * @param area 除此之外的区域穿透
      */
     click: function (window, area) {
-        // //穿透其他区域
+        //穿透全部，避免应用刚打开的时候其他部位失效
+        window.setIgnoreMouseEvents(true, {forward: true});
+        //穿透其他区域
         area.on('mouseenter', () => {
             window.setIgnoreMouseEvents(false);
         });
-        area.on('mouseleave', () => {
-            window.setIgnoreMouseEvents(true, {forward: true});
+        area.on('mouseleave', (event) => {
+            //添加判断，鼠标左键按下的话说明正在拖动应用
+            if (event.which != 1) {
+                window.setIgnoreMouseEvents(true, {forward: true});
+            }
         });
     },
     /**

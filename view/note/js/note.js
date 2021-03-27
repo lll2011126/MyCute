@@ -93,7 +93,7 @@ var options = {
     minimumCountColumns: 2,             //最少允许的列数
     clickToSelect: false,                //是否启用点击选中行
     // showPaginationSwitch: true,     //显示切换分页按钮
-    // height: 500,                        //行高，如果没有设置height属性，表格自动根据记录条数觉得表格高度
+    height: 550,                        //行高，如果没有设置height属性，表格自动根据记录条数觉得表格高度
     uniqueId: "id",                     //每一行的唯一标识，一般为主键列
     showToggle: false,                    //是否显示详细视图和列表视图的切换按钮0
     cardView: false,                    //是否显示详细视图
@@ -123,9 +123,9 @@ var options = {
 };
 $(document).ready(function () {
     let thisWindow = remote.getCurrentWindow();
-    windowControl.move(thisWindow, $("#planBox"), false, true);
-
+    windowControl.move(thisWindow, $(".window-content"), false, true);
     $('#table').bootstrapTable(options);
+    windowControl.stopPropagations([$('#table'), $('#toolbar'), $(':input')]);
     //刷新
     $("[name='refresh']").on('click', function () {
         $('#table').bootstrapTable('load', dbUtil.getAllByTableName(tableName));

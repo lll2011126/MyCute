@@ -3,6 +3,7 @@
  */
 @transparent: #ffffff00;
 @backgroundColor: #F8F8FFA0;
+@boxShadow: 20px;
 /**
 按钮
  */
@@ -50,17 +51,17 @@ body {
 .window-content {
   position: absolute;
 
-  top: 10%;
-  right: 4%;
+  top: @boxShadow;
+  right: @boxShadow;
   margin: auto;
-  bottom: 10%;
-  left: 4%;
+  bottom: @boxShadow;
+  left: @boxShadow;
 
   /*background-color: #FFB5C5A0;*/
   background-color: @backgroundColor;
   border-radius: 10px;
   /*box-shadow: 0 0 20px #FFB5C5A0;*/
-  box-shadow: 0 0 20px @backgroundColor;
+  box-shadow: 0 0 @boxShadow @backgroundColor;
   overflow: hidden;
 }
 

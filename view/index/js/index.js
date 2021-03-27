@@ -6,6 +6,8 @@ const {remote} = require('electron');
 $(document).ready(function () {
     const thisWindow = remote.getCurrentWindow();
     windowControl.move(thisWindow, $("#coreArea"), true);
+    windowControl.click(thisWindow, $('#flashArea'));
+    windowControl.click(thisWindow, $('#boxArea'));
 
     // 两种形态切换
     $("#coreArea").dblclick(function (e) {
@@ -140,12 +142,12 @@ var rightOptions = [
         name: "计划",
         icon: "../../static/image/box/time.png",
         href: "../note/note.html",
-        width: remote.app.screenWidth - 600,
-        height: remote.app.screenHeight - 500,
-        windowOption: {
-            frame: true,
-            openDevTools: true
-        }
+        width: remote.app.screenWidth - 700,
+        height: remote.app.screenHeight - 400,
+        // windowOption: {
+        //     // frame: true,
+        //     openDevTools: true
+        // }
     },
     {
         name: "bbb",

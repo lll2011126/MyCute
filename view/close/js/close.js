@@ -10,6 +10,7 @@ $(document).ready(function () {
         if (remote.app.closeWinStatus == remote.app.enum.closeWinStatus.show) {
             $('#x').css('width', '100px');
             $('#x').css('height', '100px');
+            $('#x').css('border-radius', '0 0 100px 0');
             $('#x').css('background-color', '#E6E6FAA0');
             $('#x').css('box-shadow', '0 0 30px #E6E6FAA0');
 
@@ -19,6 +20,7 @@ $(document).ready(function () {
         } else if (remote.app.closeWinStatus == remote.app.enum.closeWinStatus.hide) {
             $('#x').css('width', '0');
             $('#x').css('height', '0');
+            $('#x').css('border-radius', '0 0 100px 0');
             $('#x').css('background-color', '#F8F8FF00');
             $('#x').css('box-shadow', '0 0 30px #F8F8FF00');
 

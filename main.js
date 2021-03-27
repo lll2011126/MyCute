@@ -27,8 +27,8 @@ let closeOptions = {
     },
     x: -8,
     y: -8,
-    width: 158,
-    height: 158,
+    width: 168,
+    height: 168,
     frame: false,
     resizable: false,
     transparent: true,
@@ -115,6 +115,13 @@ app.windowMove = function windowMove(win) {
                 const cursorPosition = screen.getCursorScreenPoint();
                 const x = winStartPosition.x + cursorPosition.x - mouseStartPosition.x;
                 const y = winStartPosition.y + cursorPosition.y - mouseStartPosition.y;
+                if ((x <= 100 && y <= 100) && app.dir != 2) {
+                    app.dir = 2;
+                    closeWindow.show();
+                } else if ((x > 100 || y > 100) && app.dir != 1) {
+                    app.dir = 1;
+                    closeWindow.show();
+                }
                 win.setPosition(x, y, true);
             }, 10);
         } else {

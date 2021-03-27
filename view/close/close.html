@@ -11,15 +11,44 @@
             overflow: hidden;
         }
 
-        div {
+        #x {
             width: 0;
             height: 0;
             border-radius: 0 0 100px 0;
-            transition: 1.5s;
+            transition: 1s;
+        }
+
+        .x {
+            position: relative;
+            width: 0;
+            height: 0;
+            transition: 1s;
+        }
+
+        .x::before {
+            content: '';
+            width: 70%;
+            border-top: 3px solid #FFF8DC50;
+            position: absolute;
+            left: 40%;
+            top: 40%;
+            transform: translate(-50%, -50%) rotate(45deg);
+        }
+
+        .x::after {
+            content: '';
+            width: 70%;
+            border-top: 3px solid #FFF8DC50;
+            position: absolute;
+            left: 40%;
+            top: 40%;
+            transform: translate(-50%, -50%) rotate(-45deg);
         }
     </style>
 </head>
 <body>
-<div></div>
+<div id="x">
+    <div class="x"></div>
+</div>
 </body>
 </html>

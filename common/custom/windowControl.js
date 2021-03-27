@@ -161,7 +161,7 @@ const windowControl = {
 
             //检测是否符合停靠条件
             if (against) {
-                if (event.which == 1) {
+                if (event.which == 1 && !(event.screenX <= remote.app.closeWindowWidth + 10 && event.screenY <= remote.app.closeWindowHeight + 10)) {
                     let offX = Math.floor(area.offset().left);//元素的绝对位置
                     let offY = Math.floor(area.offset().top);//元素的绝对位置
                     let areaWidth = area.width();
